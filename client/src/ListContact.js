@@ -110,6 +110,15 @@ class App extends Component {
                     isOpen={this.state.modalIsOpen}
                     onRequestClose={this.closeModal}
                     portalClassName="modal"
+                    style={{
+                        overlay: {
+                            position: 'fixed',
+                            margin: 'auto',
+                            width: '400px',
+                            height: '300px',
+                            backgroundColor: 'rgba(255, 255, 255, 0.75)'
+                        },
+                    }}
                 >
                     <button onClick={this.closeModal}>Đóng</button>
                     <div>
