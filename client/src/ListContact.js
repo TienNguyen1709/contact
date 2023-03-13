@@ -73,6 +73,7 @@ class App extends Component {
                 }))
             })
             .catch(error => console.log(error));
+        window.location.reload();
     }
 
     handleInputChange = (e) => {
