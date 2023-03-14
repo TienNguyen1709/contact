@@ -3,7 +3,7 @@ import axios from 'axios';
 import AddContact from "./AddContact";
 import Modal from "react-modal";
 
-class App extends Component {
+export default class ListContact extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -193,5 +193,3 @@ class App extends Component {
         )
     }
 }
-
-export default App;
