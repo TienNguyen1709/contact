@@ -7,9 +7,13 @@ class AddContact extends Component {
         const value = target.value;
         const name = target.name;
         const phone = target.phone;
+        const email = target.email;
+        const address = target.address;
         this.setState({
             [name]: value,
-            [phone]: value
+            [phone]: value,
+            [email]: value,
+            [address]: value
         });
     }
     handleInsertSubmit = (e) => {
@@ -18,6 +22,8 @@ class AddContact extends Component {
             id: '',
             name: this.state.name,
             phone: this.state.phone,
+            email: this.state.email,
+            address: this.state.address,
         };
         axios.post('/api/add', newInfo)
             .then(res => {
@@ -49,6 +55,24 @@ class AddContact extends Component {
                             <td>
                                 <input
                                     name="phone"
+                                    type="text"
+                                    onChange={this.handleInputChange}/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>
+                                <input
+                                    name="email"
+                                    type="text"
+                                    onChange={this.handleInputChange}/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Địa chỉ</th>
+                            <td>
+                                <input
+                                    name="address"
                                     type="text"
                                     onChange={this.handleInputChange}/>
                             </td>

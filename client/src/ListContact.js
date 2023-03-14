@@ -28,7 +28,7 @@ class App extends Component {
         axios.post('/api/delete', newInfo)
             .then(res => {
                 this.setState(del => ({
-                    user: del.user.filter(d => d.id !== newInfo)
+                    user: del.user.filter(d => d.id !== res)
                 }));
             })
             .catch(error => console.log(error));
@@ -43,6 +43,8 @@ class App extends Component {
             id: info.id,
             name: info.name,
             phone: info.phone,
+            email: info.email,
+            address: info.address,
         });
     };
 
@@ -57,6 +59,8 @@ class App extends Component {
             id: this.state.id,
             name: this.state.name,
             phone: this.state.phone,
+            email: this.state.email,
+            address: this.state.address,
         };
 
         axios.post('/api/update', newInfo)
@@ -68,7 +72,9 @@ class App extends Component {
                             ...info,
                             name: this.state.name,
                             phone: this.state.phone,
-                        } : info
+                            email: this.state.email,
+                            address: this.state.address,
+                        } : res
                     )
                 }))
             })
@@ -81,9 +87,13 @@ class App extends Component {
         const value = target.value;
         const name = target.name;
         const phone = target.phone;
+        const email = target.email;
+        const address = target.address;
         this.setState({
             [name]: value,
-            [phone]: value
+            [phone]: value,
+            [email]: value,
+            [address]: value
         });
     }
 
@@ -101,6 +111,8 @@ class App extends Component {
                         <li>
                             <h3>{info.name}</h3>
                             <h3>{info.phone}</h3>
+                            <h3>{info.email}</h3>
+                            <h3>{info.address}</h3>
                             <button onClick={() => this.openModal(info)}>Sửa</button>
                             <button onClick={() => this.handleDelete(info)}>Xóa</button>
                         </li>
@@ -115,7 +127,7 @@ class App extends Component {
                             position: 'fixed',
                             margin: 'auto',
                             width: '400px',
-                            height: '300px',
+                            height: '350px',
                             backgroundColor: 'rgba(255, 255, 255, 0.75)'
                         },
                     }}
@@ -143,6 +155,28 @@ class App extends Component {
                                             name="phone"
                                             type="text"
                                             value={this.state.phone}
+                                            onChange={this.handleInputChange}
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Email</th>
+                                    <td>
+                                        <input
+                                            name="email"
+                                            type="text"
+                                            value={this.state.email}
+                                            onChange={this.handleInputChange}
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Địa chỉ</th>
+                                    <td>
+                                        <input
+                                            name="address"
+                                            type="text"
+                                            value={this.state.address}
                                             onChange={this.handleInputChange}
                                         />
                                     </td>

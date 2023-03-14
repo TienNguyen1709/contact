@@ -29,10 +29,12 @@ app.get('/api/user', (req, res) => {
 
 app.post('/api/add', function(req, res) {
     var sql = "INSERT "
-        + "INTO user(name,phone) "
+        + "INTO user(name,phone,email,address) "
         + "VALUES('"
         +   req.body.name+ "','"
-        +   req.body.phone+"')";
+        +   req.body.phone+ "','"
+        +   req.body.email+ "','"
+        +   req.body.address+"')";
     connection.query(sql, function(err, results) {
         if (err) throw err;
         res.json({user: results});
@@ -42,7 +44,9 @@ app.post('/api/add', function(req, res) {
 app.post('/api/update', function(req, res) {
     var sql = "UPDATE user SET "
         + "name='"+req.body.name+"',"
-        + "phone='"+req.body.phone+"'"
+        + "phone='"+req.body.phone+"',"
+        + "email='"+req.body.email+"',"
+        + "address='"+req.body.address+"'"
         + "WHERE id='"+req.body.id+"'";
     connection.query(sql, function(err, results) {
         if (err) throw err;
