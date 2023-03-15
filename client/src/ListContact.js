@@ -24,7 +24,7 @@ export default function ListContact() {
     }
 
     function addContact() {
-        axios.post(`/api/add`, {handleInputChange})
+        axios.post(`/api/add`, {name})
             .then(name => {
                 console.log(name);
             })
