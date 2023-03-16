@@ -19,7 +19,7 @@ connection.connect(function(err){
     (err) ? console.log(err) : console.log(connection);
 });
 
-app.get('/api/user', (req, res) => {
+app.get('/api/user', function(req, res) {
     var sql = "SELECT * FROM user ORDER BY id DESC";
     connection.query(sql, function(err, results) {
         if (err) throw err;

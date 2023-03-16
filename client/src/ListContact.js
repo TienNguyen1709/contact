@@ -1,13 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import axios from 'axios';
 import AddContact from "./AddContact";
 
 export default function ListContact() {
-    const [name, setName] = useState('');
-    const [phone, setPhone] = useState('');
-    const [email, setEmail] = useState('');
-    const [address, setAddress] = useState('');
-
     function handleInputChange(e) {
         const target = e.target;
         const value = target.value;
@@ -22,20 +17,21 @@ export default function ListContact() {
             [address]: value
         });
     }
-
-    function addContact() {
-        axios.post(`/api/add`, {name})
-            .then(name => {
-                console.log(name);
+    function showUser() {
+        axios.get('/api/user')
+            .then(res => {
+                const user = res.data;
+                this.setState({user: user.user});
             })
+            .catch(error => console.log(error));
     }
-
     return (
         <div>
             <h1>Quản lý danh bạ</h1>
             <AddContact
-                addContact={addContact}
+                addContact={handleInputChange}
             />
+            {showUser}
         </div>
     )
 }
